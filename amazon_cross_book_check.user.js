@@ -72,22 +72,15 @@ var PAGEINFO = [
 		autoStart: true
 	},
 	{
-		type: 'search',
-		urlExp: 'keywords=',
-		insertAfter: '//div[@class="productData"]/*[last()]',
-		asinLink: '//div[@class="productData"]/div[1]/a',
-		autoStart: true
-	},
-	{
 		type: 'bestsell',
 		urlExp: '/bestsellers/',
-		insertAfter: '//table[@class="priceBox"]/tbody/tr[last()]',
-		asinLink: '//div[@class="productTitle"]/a',
+		insertAfter: '//div[@class="zg_itemInfo"]/*[last()]',
+		asinLink: '//div[@class="zg_itemInfo"]/div[@class="zg_title"]/a[1]',
 		autoStart: true
 	},
 	{
 		type: 'recommend',
-		urlExp: '/yourstore/',
+		urlExp: '/yourstore',
 		insertAfter: '//table[@class="priceBox"]/tbody/tr[last()]',
 		asinLink: '//td[@width="100%"]/a',
 		autoStart: true
@@ -107,10 +100,31 @@ var PAGEINFO = [
 		autoStart: true
 	},
 	{
+		type: 'search',
+		urlExp: '/search/',
+		insertAfter: '//div[@class="data"]/*[last()]',
+		asinLink: '//div[@class="data"]//a[@class="title"][1]',
+		autoStart: true
+	},
+	{
+		type: 'search',
+		urlExp: '/s/',
+		insertAfter: '//div[@class="data"]/*[last()]',
+		asinLink: '//div[@class="data"]//a[@class="title"][1]',
+		autoStart: true
+	},
+	{
+		type: 'search',
+		urlExp: '/b/',
+		insertAfter: '//div[@class="data"]/*[last()]',
+		asinLink: '//div[@class="data"]//a[@class="title"][1]',
+		autoStart: true
+	},
+	{
 		type: 'author',
-		urlExp: 'author',
-		insertAfter: '//div[@class="productData"]/*[last()]',
-		asinLink: '//div[@class="productData"]/div[1]/a',
+		urlExp: '/e/',
+		insertAfter: '//tr/td[@class="workInfo"]/*[last()]',
+		asinLink: '//div[@class="faceoutTitle"]/a',
 		autoStart: true
 	}
 ]
@@ -359,7 +373,7 @@ function getPageType(url) {
 //----[utility]----
 
 function getISBN(str) {
-	if (str.match(/[\/\=]([\d]{9}[\dX])[^&]?/)) return RegExp.$1;
+	if (str.match(/[\/\=]([\d]{9}[\dX])(?:[^\w&]|$)/)) return RegExp.$1;
 }
 
 function conv2ISBN13(str) {
