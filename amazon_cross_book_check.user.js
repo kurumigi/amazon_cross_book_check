@@ -28,16 +28,17 @@ var SITEINFO = [
 		//disabled: true
 	},
 	{
-		label: '\u53E4\u672C\u5E02\u5834', //古本市場
-		url: 'http://www.search.ubook.co.jp/search/search.php?category1=all&shousai_r=1&isbn=',
-		regexp: /span class="biggerlink">([\d,]+)[\s\S]*?<input type="checkbox"/,
+		label: '\u30D5\u30EB\u30A4\u30C1\u30AA\u30F3\u30E9\u30A4\u30F3', // フルイチオンライン
+		url: 'http://www.furu1online.net/SearchItem?FREE_WORD=',
+		afterISBN: '&DISP_COUNT=12&PAGE_INDEX=1&PROP_ID_9200=2',
+		regexp: /(?:\u8CA9\u58F2\u4FA1\u683C\s*|<td class="price">)<strong>([\d,]+)<\/strong>/,
 		//disabled: true
 	},
 	{
-		label: 'eBOOKOFF',
-		url: 'http://www.ebookoff.co.jp/cmdtyallsearch/hdnAllSearchFlg/1/Ctgry/*/LRack/*/SetFlg/0?SetFlg=&hdnContinueCmdtyList=&hdnContinueCode=&hdnPage=0&hdnFormId=cmdtyalllist&hdnStartIndex=0&hdnEndIndex=500&hdnNarrowCtgry=&hdnAllSearchFlg=&hdnNarrowFlg=&actionNameTxt=&subtotal=&word=',
-		afterISBN: '&used=0&author=&genre=&size=&pricef=&pricet=&issuef=&issuet=&maker=&isbn=&sort=&desc=&used=0&pg=0&pagingData=&iStartPageNo=1&nowPageNo=1&hdnCmdtyCode0=0010046487',
-		regexp: /fs12 texttype01">([\d,]+)/,
+		label: '\u30CD\u30C3\u30C8\u30AA\u30D5', // ネットオフ
+		url: 'http://www.netoff.co.jp/cmdtyallsearch/hdnAllSearchFlg/1/Ctgry/*/LRack/*/SetFlg/0?word=',
+		afterISBN: '&stock=1&used=0',
+		regexp: /<span class="fs14".*?>([\d,]+)/,
 		isbn13: true,
 		//disabled: true
 	},
