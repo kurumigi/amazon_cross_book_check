@@ -202,30 +202,62 @@ ACBC.prototype.boot = function(pinfo) {
 		this.singleRun();
 	} else {
 		this.pinfo = pinfo;
-		if (DEFAULT_AUTO_START && this.pinfo.autoStart) {
-			this.multiRun();
-		} else {
-			var startButton = document.createElement("div");
-			with(startButton){
-				setAttribute("class", "ACBC_start");
-				innerHTML = "他のサイトから探す";
-				addEventListener("mouseover", function(){
-					startButton.setAttribute("class", "ACBC_start ACBC_start_hover");
-				}, false)
-				addEventListener("mouseout", function(){
-					startButton.setAttribute("class", "ACBC_start");
-				}, false);
-				var self = this;
-				addEventListener("click", function(){
-					self.multiRun();
-					startButton.setAttribute("style", "display:none;");
-				}, false);
-			}
-			$x(this.pinfo.insertAfter)[0].parentNode.appendChild(startButton);
+		var startButton = document.createElement("div");
+		this.startButton = startButton;
+		with(startButton){
+			setAttribute("id", "ACBC_start");
+			setAttribute("class", "ACBC_start");
+			innerHTML = "他のサイトから探す";
+			addEventListener("mouseover", function(){
+				startButton.setAttribute("class", "ACBC_start ACBC_start_hover");
+			}, false);
+			addEventListener("mouseout", function(){
+				startButton.setAttribute("class", "ACBC_start");
+			}, false);
+			var self = this;
+			addEventListener("click", function(){
+				self.multiRun();
+				startButton.style.display = "none";
+			}, false);
 		}
+		if (DEFAULT_AUTO_START && this.pinfo.autoStart) {
+			startButton.click();
+		}
+		this.insertStartButton();
+		this.listenForDOMChange();
 	}
 	GM_addStyle((STYLE).toString());
-}
+};
+
+ACBC.prototype.insertStartButton = function () {
+	var elements = $x(this.pinfo.insertAfter);
+	if (elements.length === 0) return false;
+	elements[0].parentNode.appendChild(this.startButton);
+	return true;
+};
+
+ACBC.prototype.listenForDOMChange = function () {
+	var self = this;
+	var cb = function () {
+		var startButton = self.startButton;
+		if (!startButton) {
+			return false;
+		}
+		if (!document.getElementById(startButton.getAttribute("id"))) {
+			self.offset = 0;
+			self.insertStartButton();
+			if (DEFAULT_AUTO_START && self.pinfo.autoStart) {
+				startButton.click();
+			} else {
+				startButton.style.display = "inline";
+			}
+		}
+		window.setTimeout(cb, 1000);
+		return true;
+	};
+	cb();
+	return true;
+};
 
 ACBC.prototype.singleRun = function(){
 	var t = document.getElementById('handleBuy');
@@ -258,7 +290,10 @@ ACBC.prototype.multiRun = function() {
 		self.offset = total;
 	};
 	f();
-	if (window.AutoPagerize) window.AutoPagerize.addFilter(f);
+	if (window.AutoPagerize && !this.hasAddedFilter) {
+		window.AutoPagerize.addFilter(f);
+		this.hasAddedFilter = true;
+	}
 }
 
 ACBC.prototype.callAfterAction = function(){
@@ -361,7 +396,9 @@ SITEINFO = SITEINFO.filter(function(i){ return !(i.disabled) });
 var location = document.location.href;
 var pinfo = getPageType(location);
 var acbc = new ACBC();
-if (pinfo || getISBN(location)) acbc.boot(pinfo);
+window.addEventListener("load", function () {
+	if (pinfo || getISBN(location)) acbc.boot(pinfo);
+}, false);
 
 function getPageType(url) {
 	for (i = 0, len = PAGEINFO.length; i < len; i++) {
