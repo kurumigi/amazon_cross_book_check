@@ -129,44 +129,44 @@ var PAGEINFO = [
 	}
 ]
 
-var STYLE = <><![CDATA[
-	table.ACBC {
-		font-size: 13px;
-		margin-top: 3px;
-	}
-	table.ACBC td {
-		border:none;
-	}
-	table.ACBC td.label {
-		padding-right:1em;
-	}
-	table.ACBC span.loading {
-		color: #39c;
-	}
-	table.ACBC a.notfound {
-		color: #666 !important;
-		text-decoration: none;
-		font-family: arial,verdana,helvetica,sans-serif;
-	}
-	table.ACBC a.found {
-		color: #900 !important;
-		font-weight: bold;
-		text-decoration: underline !important;
-	}
-	div.ACBC_start {
-		height: 22px;
-		padding: 8px 0 0 36px;
-		font-size: 12px;
-		color: #004B91;
-		cursor: pointer;
-		background-image: url("http://exnent.com/userjs/search_button.png");
-		background-repeat: no-repeat;
-	}
-	div.ACBC_start_hover {
-		color: #c60 !important;
-		text-decoration:underline !important;
-	}
-]]></>
+var STYLE = '\
+	table.ACBC {\
+		font-size: 13px;\
+		margin-top: 3px;\
+	}\
+	table.ACBC td {\
+		border:none;\
+	}\
+	table.ACBC td.label {\
+		padding-right:1em;\
+	}\
+	table.ACBC span.loading {\
+		color: #39c;\
+	}\
+	table.ACBC a.notfound {\
+		color: #666 !important;\
+		text-decoration: none;\
+		font-family: arial,verdana,helvetica,sans-serif;\
+	}\
+	table.ACBC a.found {\
+		color: #900 !important;\
+		font-weight: bold;\
+		text-decoration: underline !important;\
+	}\
+	div.ACBC_start {\
+		height: 22px;\
+		padding: 8px 0 0 36px;\
+		font-size: 12px;\
+		color: #004B91;\
+		cursor: pointer;\
+		background-image: url("http://exnent.com/userjs/search_button.png");\
+		background-repeat: no-repeat;\
+	}\
+	div.ACBC_start_hover {\
+		color: #c60 !important;\
+		text-decoration:underline !important;\
+	}\
+';
 
 var AFTER_ACTION = [
 	function(acbc){
