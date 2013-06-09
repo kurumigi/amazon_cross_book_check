@@ -21,13 +21,6 @@ var SITEINFO = [
 		//disabled: true
 	},
 	{
-		label: 'livedoor BOOKS',
-		url: 'http://books.livedoor.com/search/?v=2&word=',
-		afterISBN: '&type=isbn',
-		regexp: /price\"><span>([\d,]+)/,
-		//disabled: true
-	},
-	{
 		label: '\u30D5\u30EB\u30A4\u30C1\u30AA\u30F3\u30E9\u30A4\u30F3', // フルイチオンライン
 		url: 'http://www.furu1online.net/SearchItem?FREE_WORD=',
 		afterISBN: '&DISP_COUNT=12&PAGE_INDEX=1&PROP_ID_9200=2',
