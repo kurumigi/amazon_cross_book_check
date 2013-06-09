@@ -35,6 +35,13 @@ var SITEINFO = [
 		isbn13: true,
 		//disabled: true
 	},
+	{
+		label: '\u99FF\u6CB3\u5C4B', // 駿河屋
+		url: 'http://www.suruga-ya.jp/search?category=&search_word=',
+		regexp: /\u58F2\u4FA1<font color="red"><b>\uFFE5([\d,]+)<\/b>/,
+		isbn13: true,
+		//disabled: true
+	},
 	/* template
 	{
 		label: '',
