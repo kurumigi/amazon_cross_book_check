@@ -61,24 +61,17 @@ var SITEINFO = [
 
 var PAGEINFO = [
 	{
-		type: 'wishlist_compact',
-		urlExp: 'layout=compact',
-		insertAfter: '//span[@class="small productTitle"]/parent::td/span[last()]',
-		asinLink: '//span[@class="small productTitle"]/strong/a',
-		autoStart: true
-	},
-	{
 		type: 'wishlist',
 		urlExp: 'wishlist',
-		insertAfter: '//tbody[@class="itemWrapper"]/tr[3]/td[2]/div[last()]',
-		asinLink: '//span[@class="small productTitle"]/strong/a',
+		insertAfter: '//div[contains(concat(" ",@class," ")," g-item-details ")]/div[1]/div[1]/*[last()]',
+		asinLink: '//div[contains(concat(" ",@class," ")," g-item-details ")]/div[1]/div[1]/div[1]/h5/a',
 		autoStart: true
 	},
 	{
 		type: 'bestsell',
 		urlExp: '/bestsellers/',
-		insertAfter: '//div[@class="zg_itemInfo"]/*[last()]',
-		asinLink: '//div[@class="zg_itemInfo"]/div[@class="zg_title"]/a[1]',
+		insertAfter: '//div[contains(concat(" ",@class," ")," zg_itemRightDiv_normal ")]/*[last()]',
+		asinLink: '//div[contains(concat(" ",@class," ")," zg_itemRightDiv_normal ")]/div[contains(concat(" ",@class," ")," zg_title ")]/a[1]',
 		autoStart: true
 	},
 	{
@@ -98,36 +91,36 @@ var PAGEINFO = [
 	{
 		type: 'history',
 		urlExp: '/history/',
-		insertAfter: '//table[@class="priceBox"]/tbody/tr[last()]',
-		asinLink: '//td[@width="100%"]/a',
+		insertAfter: '//div[contains(concat(" ",@class," ")," asin-faceout ")]/*[last()]',
+		asinLink: '//div[contains(concat(" ",@class," ")," asin-faceout ")]/a[contains(concat(" ",@class," ")," asin-faceout-link ")][1]',
 		autoStart: true
 	},
 	{
 		type: 'search',
 		urlExp: '/search/',
-		insertAfter: '//div[@class="data"]/*[last()]',
-		asinLink: '//div[@class="data"]//a[@class="title"][1]',
+		insertAfter: '//li[contains(concat(" ",@class," ")," s-result-item ")]/*[last()]',
+		asinLink: '//li[contains(concat(" ",@class," ")," s-result-item ")]//a[contains(concat(" ",@class," ")," s-access-detail-page ")][1]',
 		autoStart: true
 	},
 	{
 		type: 'search',
 		urlExp: '/s/',
-		insertAfter: '//div[@class="data"]/*[last()]',
-		asinLink: '//div[@class="data"]//a[@class="title"][1]',
+		insertAfter: '//li[contains(concat(" ",@class," ")," s-result-item ")]/*[last()]',
+		asinLink: '//li[contains(concat(" ",@class," ")," s-result-item ")]//a[contains(concat(" ",@class," ")," s-access-detail-page ")][1]',
 		autoStart: true
 	},
 	{
-		type: 'search',
-		urlExp: '/b/',
-		insertAfter: '//div[@class="data"]/*[last()]',
-		asinLink: '//div[@class="data"]//a[@class="title"][1]',
+		type: 'category',
+		urlExp: '/b?',
+		insertAfter: '//li[contains(concat(" ",@class," ")," s-result-item ")]/*[last()]',
+		asinLink: '//li[contains(concat(" ",@class," ")," s-result-item ")]//a[contains(concat(" ",@class," ")," s-access-detail-page ")][1]',
 		autoStart: true
 	},
 	{
 		type: 'author',
 		urlExp: '/e/',
-		insertAfter: '//tr/td[@class="workInfo"]/*[last()]',
-		asinLink: '//div[@class="faceoutTitle"]/a',
+		insertAfter: '//li[contains(concat(" ",@class," ")," s-result-item ")]/*[last()]',
+		asinLink: '//li[contains(concat(" ",@class," ")," s-result-item ")]//a[contains(concat(" ",@class," ")," s-access-detail-page ")][1]',
 		autoStart: true
 	}
 ]
