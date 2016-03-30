@@ -132,12 +132,14 @@ var PAGEINFO = [
 var STYLE = '\
 	table.ACBC {\
 		font-size: 13px;\
-		margin-top: 3px;\
+		margin-top:    14px;\
+		margin-bottom:  6px;\
 	}\
 	table.ACBC td {\
 		border:none;\
 	}\
 	table.ACBC td.label {\
+		padding-left: 1em;\
 		padding-right:1em;\
 	}\
 	table.ACBC span.loading {\
