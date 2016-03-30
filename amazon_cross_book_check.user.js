@@ -18,10 +18,14 @@ var INTERVAL = 500;
 var SITEINFO = [
 	{
 		label: 'BOOKOFF Online',
-		url: 'http://www.bookoffonline.co.jp/display/L001,st=u,q=',
-		regexp: /mainprice\">￥([\d,]+)/,
+		url: 'http://www.bookoffonline.co.jp/feed/search,st=u,q=',
+		regexp: /<li>\u4E2D\u53E4\u4FA1\u683C\uFF1A\uFFE5([\d,]+)<\/li>/,
 		isbn13: true,
 		//disabled: true
+		ifFound: function(checker, res){
+			checker.url = checker.url.replace("/feed/search", "/display/L001");
+			checker.loadContent();
+		}
 	},
 	{
 		label: '\u30D5\u30EB\u30A4\u30C1\u30AA\u30F3\u30E9\u30A4\u30F3', // フルイチオンライン
