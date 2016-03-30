@@ -263,9 +263,9 @@ ACBC.prototype.listenForDOMChange = function () {
 };
 
 ACBC.prototype.singleRun = function(){
-	var t = document.getElementById('handleBuy');
+	var t = document.getElementById('combinedBuyBox');
 	if (!t) return;
-	var target = t.lastChild.previousSibling.lastChild.lastChild;
+	var target = t.lastChild;
 	var self = this;
 	var isbn = getISBN(document.location.href);
 	var item = new Item(isbn, target);
