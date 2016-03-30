@@ -10,7 +10,7 @@
 // @grant       GM_addStyle
 // ==/UserScript==
 //
-// version: 2010.6.16 + 2016.3.30 Patch
+// version: 2010.6.16 + 2016.3.31 Patch
 
 var DEFAULT_AUTO_START = false;
 var INTERVAL = 500;
@@ -34,14 +34,14 @@ var SITEINFO = [
 		label: '\u30CD\u30C3\u30C8\u30AA\u30D5', // ネットオフ
 		url: 'http://www.netoff.co.jp/cmdtyallsearch/hdnAllSearchFlg/1/Ctgry/*/LRack/*/SetFlg/0?word=',
 		afterISBN: '&stock=1&used=0',
-		regexp: /<span class="fs14".*?>([\d,]+)/,
+		regexp: /<li class="price .*?">([\d,]+)/,
 		isbn13: true,
 		//disabled: true
 	},
 	{
 		label: '\u99FF\u6CB3\u5C4B', // 駿河屋
 		url: 'http://www.suruga-ya.jp/search?category=&search_word=',
-		regexp: /\u58F2\u4FA1<font color="red"><b>\uFFE5([\d,]+)<\/b>/,
+		regexp: /<p class="price">.*?([\d,]+)/,
 		isbn13: true,
 		//disabled: true
 	},
