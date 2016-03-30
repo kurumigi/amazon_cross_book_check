@@ -395,13 +395,17 @@ Checker.prototype.createLinkText = function() {
 
 //----[main]----
 
-SITEINFO = SITEINFO.filter(function(i){ return !(i.disabled) });
-var location = document.location.href;
-var pinfo = getPageType(location);
-var acbc = new ACBC();
-window.addEventListener("load", function () {
-	if (pinfo || getISBN(location)) acbc.boot(pinfo);
-}, false);
+if (window == window.parent) {
+
+	SITEINFO = SITEINFO.filter(function(i){ return !(i.disabled) });
+	var location = document.location.href;
+	var pinfo = getPageType(location);
+	var acbc = new ACBC();
+	window.addEventListener("load", function () {
+		if (pinfo || getISBN(location)) acbc.boot(pinfo);
+	}, false);
+
+}
 
 function getPageType(url) {
 	for (i = 0, len = PAGEINFO.length; i < len; i++) {
