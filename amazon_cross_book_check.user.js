@@ -5,9 +5,12 @@
 // @include     https://www.amazon.co.jp/*
 // @include     http://amazon.co.jp/*
 // @include     https://amazon.co.jp/*
+// @grant       GM_registerMenuCommand
+// @grant       GM_xmlhttpRequest
+// @grant       GM_addStyle
 // ==/UserScript==
 //
-// version: 2010.6.16
+// version: 2010.6.16 + 2016.3.30 Patch
 
 var DEFAULT_AUTO_START = false;
 var INTERVAL = 500;
@@ -468,12 +471,7 @@ function openCSV(str){
 }
 
 function log(message) {
-    if (typeof console == 'object') {
-        console.log(message)
-    }
-    else {
-        GM_log(message)
-    }
+    console.log(message)
 }
 
 //---copy from AutoPagerize ( http://userscripts.org/scripts/show/8551 )---
