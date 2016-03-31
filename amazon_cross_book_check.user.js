@@ -19,6 +19,19 @@ var INTERVAL = 500;
 var SITEINFO = [
 	// 新刊書店
 	{
+		label: '\u30E8\u30C9\u30D0\u30B7.com', //ヨドバシ.com
+		url: 'http://www.yodobashi.com/ec/category/index.html?cate=&word=',
+		afterISBN: '&ginput=',
+		regexp: / class="pListBlock hznBox">.*?<div class="pInfo">.*? class="red">.*?([\d,]+)/,
+		isbn13: true,
+		ifFound: function(checker, res){
+			var content = $x('//div[contains(concat(" ",@class," ")," hznBox ")]//div[contains(concat(" ",@class," ")," pInfo ")]//span[contains(concat(" ",@class," ")," green ")]', res)[0];
+			checker.content = content.textContent;
+			checker.loadContent();
+		}
+		//disabled: true
+	},
+	{
 		label: '\u697D\u5929\u30D6\u30C3\u30AF\u30B9', //楽天ブックス
 		url: 'http://search.books.rakuten.co.jp/bksearch/nm?v=2&spv=2&e=5&sitem=',
 		regexp: /<span class="rbcomp__item-list__item__price"><em>([\d,]+)/,
