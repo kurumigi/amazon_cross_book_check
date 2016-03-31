@@ -22,10 +22,10 @@ var SITEINFO = [
 		label: '\u30E8\u30C9\u30D0\u30B7.com', //ヨドバシ.com
 		url: 'http://www.yodobashi.com/ec/category/index.html?cate=&word=',
 		afterISBN: '&ginput=',
-		regexp: / class="pListBlock hznBox">.*?<div class="pInfo">.*? class="red">.*?([\d,]+)/,
+		regexp: / class="pListBlock hznBox">.*?<div class="pInfo">.*?\uFFE5([\d,]+)/,
 		isbn13: true,
 		ifFound: function(checker, res){
-			var content = $x('//div[contains(concat(" ",@class," ")," hznBox ")]//div[contains(concat(" ",@class," ")," pInfo ")]//span[contains(concat(" ",@class," ")," green ")]', res)[0];
+			var content = $x('//div[contains(concat(" ",@class," ")," hznBox ")]//div[contains(concat(" ",@class," ")," pInfo ")]//li[3]/span', res)[0];
 			checker.content = content.textContent;
 			checker.loadContent();
 		}
@@ -46,7 +46,7 @@ var SITEINFO = [
 	{
 		label: 'honto',
 		url: 'http://honto.jp/netstore/search_0730_021_10',
-		afterISBN: '.html',
+		afterISBN: '.html?stcl=^%E6%B3%A8%E6%96%87%E5%8F%AF%E8%83%BD%E5%9C%A8%E5%BA%AB%24',
 		regexp: /<span class="stYen"><span>([\d,]+)/,
 		isbn13: true,
 		ifFound: function(checker, res){
@@ -86,7 +86,7 @@ var SITEINFO = [
 	{
 		label: '\u99FF\u6CB3\u5C4B', // 駿河屋
 		url: 'http://www.suruga-ya.jp/search?category=&search_word=',
-		regexp: /<p class="price">.*?([\d,]+)/,
+		regexp: /<p class="price">\uFFE5([\d,]+)/,
 		isbn13: true,
 		//disabled: true
 	},
