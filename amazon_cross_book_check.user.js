@@ -496,7 +496,8 @@ function createHTMLDocumentByString(str) {
 		return new DOMParser().parseFromString(str, 'application/xhtml+xml')
 	}
 	var html = strip_html_tag(str)
-	var htmlDoc = document.implementation.createDocument(null, 'html', null)
+	var htmlDoc = document.cloneNode(false)
+	htmlDoc.appendChild(htmlDoc.importNode(document.documentElement, false))
 	var fragment = createDocumentFragmentByString(html)
 	try {
 		fragment = htmlDoc.adoptNode(fragment)
