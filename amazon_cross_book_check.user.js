@@ -16,6 +16,33 @@ var DEFAULT_AUTO_START = false;
 var INTERVAL = 500;
 
 var SITEINFO = [
+	// 新刊書店
+	{
+		label: '\u697D\u5929\u30D6\u30C3\u30AF\u30B9', //楽天ブックス
+		url: 'http://search.books.rakuten.co.jp/bksearch/nm?v=2&spv=2&e=5&sitem=',
+		regexp: /<span class="rbcomp__item-list__item__price"><em>([\d,]+)/,
+		isbn13: true,
+		ifFound: function(checker, res){
+			var content = $x("//p[@class='rbcomp__item-list__item__stock']/em", res)[0];
+			checker.content = content.textContent;
+			checker.loadContent();
+		}
+		//disabled: true
+	},
+	{
+		label: 'honto',
+		url: 'http://honto.jp/netstore/search_0730_021_10',
+		afterISBN: '.html',
+		regexp: /<span class="stYen"><span>([\d,]+)/,
+		isbn13: true,
+		ifFound: function(checker, res){
+			var content = $x("//span[@class='stIconProduct03']", res)[0];
+			checker.content = content.textContent;
+			checker.loadContent();
+		}
+		//disabled: true,
+	},
+	// 古書店
 	{
 		label: 'BOOKOFF Online',
 		url: 'http://www.bookoffonline.co.jp/feed/search,st=u,q=',
